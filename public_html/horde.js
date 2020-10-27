@@ -1,6 +1,6 @@
 var horde={};
 horde.canvasFallbackContent='<div class="fallback"><p>Your browser does not appear to support <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>.</p><p>Please try one of the following, more standards compliant browsers: <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.apple.com/safari/">Safari</a>, <a href="http://www.mozilla.com/firefox/">Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</p></div>';
-var bind=function(e,t){return"string"==typeof t&&(t=e[t]),function(){t.apply(e,arguments)}};
+var bind=funcwtion(e,t){return"string"==typeof t&&(t=e[t]),function(){t.apply(e,arguments)}};
 
 if("undefined"==typeof requestAnimationFrame)
 {
