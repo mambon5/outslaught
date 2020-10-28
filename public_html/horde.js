@@ -594,7 +594,7 @@ horde.setInterval = function(e, t, i) {
                 s = t - i.offsetTop;
             if (i.style.height = s + "px", this.enableFullscreen) {
                 height = s - 50, height < 480 && (height = 480), height > 768 && (height = 768);
-                var a = Math.round(1.333 * height)
+                var a = Math.round(1.333 * height);
             } else a = 640, height = 480;
             var o = this.canvases.display;
             o.style.width = a + "px", o.style.height = height + "px";
