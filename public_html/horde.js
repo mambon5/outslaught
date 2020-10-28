@@ -53,9 +53,9 @@ horde.setInterval = function(e, t, i) {
             if (e = e.parentNode, e === document.body) break;
             t.x += e.offsetLeft, t.y += e.offsetTop;
         }
-        return scrollTop = horde.getScrollTop(), t.x -= scrollTop.x, t.y -= scrollTop.y, t
+        return scrollTop = horde.getScrollTop(), t.x -= scrollTop.x, t.y -= scrollTop.y, t;
     }, horde.getScrollTop = function() {
-        if ("undefined" != typeof pageYOffset) return {
+        if ("undefined" !== typeof pageYOffset) return {
             x: pageXOffset,
             y: pageYOffset
         };
@@ -218,7 +218,7 @@ horde.setInterval = function(e, t, i) {
                     soundManager.stop(t);
                     break;
                 case "html5":
-                    s[t].pause(), s[t].currentTime = 0
+                    s[t].pause(), s[t].currentTime = 0;
             }
         }, horde.sound.stopAll = function() {
             if (!a) switch (e) {
@@ -229,9 +229,9 @@ horde.setInterval = function(e, t, i) {
                     break;
                 case "html5":
                     try {
-                        for (var t in s) s[t].pause(), s[t].currentTime = 0
+                        for (var t in s) s[t].pause(), s[t].currentTime = 0;
                     } catch (i) {
-                        console.log("[ERROR horde.sound.stopAll]", i)
+                        console.log("[ERROR horde.sound.stopAll]", i);
                     }
             }
         }, horde.sound.pauseAll = function() {
@@ -240,7 +240,7 @@ horde.setInterval = function(e, t, i) {
                     soundManager.pauseAll();
                     break;
                 case "html5":
-                    for (var t in s) s[t].currentTime > 0 && s[t].pause()
+                    for (var t in s) s[t].currentTime > 0 && s[t].pause();
             }
         }, horde.sound.resumeAll = function() {
             if (!a) switch (e) {
@@ -248,82 +248,82 @@ horde.setInterval = function(e, t, i) {
                     soundManager.resumeAll();
                     break;
                 case "html5":
-                    for (var t in s) s[t].currentTime > 0 && s[t].play()
+                    for (var t in s) s[t].currentTime > 0 && s[t].play();
             }
         }, horde.sound.toggleMuted = function() {
-            horde.sound.setMuted(!horde.sound.isMuted())
+            horde.sound.setMuted(!horde.sound.isMuted());
         }, horde.sound.isMuted = function() {
-            return i
+            return i;
         }, horde.sound.setMuted = function(e) {
-            i !== e && (i = e, i ? horde.sound.pauseAll() : horde.sound.resumeAll())
-        }
+            i !== e && (i = e, i ? horde.sound.pauseAll() : horde.sound.resumeAll());
+        };
     }(),
     function() {
         horde.Size = function(e, t) {
-            this.width = Number(e) || 0, this.height = Number(t) || 0
-        }
+            this.width = Number(e) || 0, this.height = Number(t) || 0;
+        };
     }(),
     function() {
         horde.Vector2 = function(e, t) {
-            this.x = Number(e) || 0, this.y = Number(t) || 0
+            this.x = Number(e) || 0, this.y = Number(t) || 0;
         };
         var e = horde.Vector2,
             t = e.prototype;
         e.fromSize = function(e) {
                 return new horde.Vector2(e.width,
-                    e.height)
+                    e.height);
             },
             e.fromHeading = function(e, t) {
-                return t = Number(t) || 1, new horde.Vector2(Math.sin(e) * t, -Math.cos(e) * t)
+                return t = Number(t) || 1, new horde.Vector2(Math.sin(e) * t, -Math.cos(e) * t);
             }, t.clone = function() {
-                return new horde.Vector2(this.x, this.y)
+                return new horde.Vector2(this.x, this.y);
             }, t.scale = function(e) {
-                return this.x *= e, this.y *= e, this
+                return this.x *= e, this.y *= e, this;
             }, t.add = function(e) {
-                return this.x += e.x, this.y += e.y, this
+                return this.x += e.x, this.y += e.y, this;
             }, t.subtract = function(e) {
-                return this.x -= e.x, this.y -= e.y, this
+                return this.x -= e.x, this.y -= e.y, this;
             }, t.zero = function() {
-                return this.x = 0, this.y = 0, this
+                return this.x = 0, this.y = 0, this;
             }, t.invert = function() {
-                return this.x *= -1, this.y *= -1, this
+                return this.x *= -1, this.y *= -1, this;
             }, t.magnitude = function() {
-                return Math.sqrt(this.x * this.x + this.y * this.y)
+                return Math.sqrt(this.x * this.x + this.y * this.y);
             }, t.normalize = function() {
                 var e = this.magnitude();
-                return 0 === e ? this : this.scale(1 / e)
+                return 0 === e ? this : this.scale(1 / e);
             }, t.toString = function() {
-                return this.x + ", " + this.y
+                return this.x + ", " + this.y;
             }, t.floor = function() {
-                return this.x = Math.floor(this.x), this.y = Math.floor(this.y), this
+                return this.x = Math.floor(this.x), this.y = Math.floor(this.y), this;
             }, t.abs = function() {
-                return this.x = Math.abs(this.x), this.y = Math.abs(this.y), this
+                return this.x = Math.abs(this.x), this.y = Math.abs(this.y), this;
             }, t.angle = function() {
-                return this.heading() * (180 / Math.PI)
+                return this.heading() * (180 / Math.PI);
             }, t.heading = function() {
-                return Math.atan2(this.x, -this.y)
-            }
+                return Math.atan2(this.x, -this.y);
+            };
     }(),
     function() {
         horde.Rect = function(e, t, i, s) {
-            this.left = Number(e) || 0, this.top = Number(t) || 0, this.width = Number(i) || 0, this.height = Number(s) || 0
+            this.left = Number(e) || 0, this.top = Number(t) || 0, this.width = Number(i) || 0, this.height = Number(s) || 0;
         };
         var e = horde.Rect,
             t = e.prototype;
         e.intersects = function(e, t) {
-            return e.left <= t.left + t.width && t.left <= e.left + e.width && e.top <= t.top + t.height && t.top <= e.top + e.height
+            return e.left <= t.left + t.width && t.left <= e.left + e.width && e.top <= t.top + t.height && t.top <= e.top + e.height;
         }, t.center = function() {
             var e = new horde.Vector2(this.width, this.height);
-            return new horde.Vector2(this.left, this.top).add(e.scale(.5))
+            return new horde.Vector2(this.left, this.top).add(e.scale(.5));
         }, t.intersects = function(t) {
-            return e.intersects(this, t)
+            return e.intersects(this, t);
         }, t.reduce = function(e) {
-            return this.left += e, this.top += e, this.width -= 2 * e, this.height -= 2 * e, this
-        }
+            return this.left += e, this.top += e, this.width -= 2 * e, this.height -= 2 * e, this;
+        };
     }(),
     function() {
         horde.Keyboard = function() {
-            this.history = [], this.keyStates = {}, this.lastKeyStates = {}, horde.on("keydown", this.handleKeyDown, window, this), horde.on("keyup", this.handleKeyUp, window, this)
+            this.history = [], this.keyStates = {}, this.lastKeyStates = {}, horde.on("keydown", this.handleKeyDown, window, this), horde.on("keyup", this.handleKeyUp, window, this);
         };
         var e = horde.Keyboard,
             t = e.prototype,
@@ -383,40 +383,40 @@ horde.setInterval = function(e, t, i) {
                     case i.S:
                     case i.D:
                     case 191:
-                        horde.stopEvent(e)
+                        horde.stopEvent(e);
                 }
             }, t.handleKeyDown = function(e) {
-                this.history.push(e.keyCode), this.keyStates[e.keyCode] = !0, this.supressKeys(e)
+                this.history.push(e.keyCode), this.keyStates[e.keyCode] = !0, this.supressKeys(e);
             }, t.handleKeyUp = function(e) {
-                this.keyStates[e.keyCode] = !1, this.supressKeys(e)
+                this.keyStates[e.keyCode] = !1, this.supressKeys(e);
             }, t.isKeyDown = function(e) {
-                return this.keyStates[e] === !0
+                return this.keyStates[e] === !0;
             }, t.isKeyPressed = function(e) {
-                return this.isKeyDown(e) && this.lastKeyStates[e] !== !0
+                return this.isKeyDown(e) && this.lastKeyStates[e] !== !0;
             }, t.isAnyKeyPressed = function(e) {
                 for (var e in this.keyStates)
                     if (this.isKeyDown(e) && this.lastKeyStates[e] !== !0) return !0;
-                return !1
+                return !1;
             }, t.clearKey = function(e) {
-                this.keyStates[e] = !1
+                this.keyStates[e] = !1;
             }, t.clearKeys = function() {
-                this.keyStates = {}
+                this.keyStates = {};
             }, t.clearHistory = function() {
-                this.history = []
+                this.history = [];
             }, t.historyMatch = function(e) {
                 var t = e.length,
                     i = this.history.slice(-t);
                 if (i.length !== t) return !1;
                 for (var s = 0; t > s; s++)
                     if (e[s] !== i[s]) return !1;
-                return !0
+                return !0;
             }, t.storeKeyStates = function() {
-                for (var e in this.keyStates) this.lastKeyStates[e] = this.keyStates[e]
-            }
+                for (var e in this.keyStates) this.lastKeyStates[e] = this.keyStates[e];
+            };
     }(),
     function() {
         horde.Mouse = function(e) {
-            this.buttonStates = {}, this.mouseX = 0, this.mouseY = 0, this.canvas = e, this.lastButtonStates = {}, horde.on("mousemove", this.handleMouseMove, e, this), horde.on("mousedown", this.handleMouseDown, e, this), horde.on("mouseup", this.handleMouseUp, window, this)
+            this.buttonStates = {}, this.mouseX = 0, this.mouseY = 0, this.canvas = e, this.lastButtonStates = {}, horde.on("mousemove", this.handleMouseMove, e, this), horde.on("mousedown", this.handleMouseDown, e, this), horde.on("mouseup", this.handleMouseUp, window, this);
         };
         var e = horde.Mouse,
             t = e.prototype;
@@ -426,26 +426,26 @@ horde.setInterval = function(e, t, i) {
             RIGHT: 2
         }, t.handleMouseMove = function(e) {
             var t = horde.getOffset(this.canvas);
-            this.mouseX = 640 * (e.clientX - t.x) / this.canvas.offsetWidth, this.mouseY = 480 * (e.clientY - t.y) / this.canvas.offsetHeight, this.hasMoved = !0
+            this.mouseX = 640 * (e.clientX - t.x) / this.canvas.offsetWidth, this.mouseY = 480 * (e.clientY - t.y) / this.canvas.offsetHeight, this.hasMoved = !0;
         }, t.handleMouseDown = function(e) {
-            this.buttonStates[e.button] = !0, horde.stopEvent(e), window.focus && window.focus()
+            this.buttonStates[e.button] = !0, horde.stopEvent(e), window.focus && window.focus();
         }, t.handleMouseUp = function(e) {
-            this.buttonStates[e.button] = !1
+            this.buttonStates[e.button] = !1;
         }, t.isButtonDown = function(e) {
-            return this.buttonStates[e]
+            return this.buttonStates[e];
         }, t.isAnyButtonDown = function() {
             for (var e in this.buttonStates)
                 if (this.buttonStates[e]) return !0;
-            return !1
+            return !1;
         }, t.clearButtons = function() {
-            this.buttonStates = {}
+            this.buttonStates = {};
         }, t.wasButtonClicked = function(e) {
-            return this.buttonStates[e] && !this.lastButtonStates[e]
+            return this.buttonStates[e] && !this.lastButtonStates[e];
         }, t.storeButtonStates = function() {
-            for (var e in this.buttonStates) this.lastButtonStates[e] = this.buttonStates[e]
-        }
+            for (var e in this.buttonStates) this.lastButtonStates[e] = this.buttonStates[e];
+        };
     }(), horde.isDemo = function() {
-        return !1
+        return !1;
     }, horde.populateWaves = function(e) {
         var t = new horde.SpawnWave;
         t.addSpawnPoint(0, 1e3), t.addSpawnPoint(1, 1e3), t.addSpawnPoint(2, 1e3), t.addObjects(0, "bat", 1), t.addObjects(1, "bat", 1), t.addObjects(2, "bat", 1), e.waves.push(t);
@@ -546,7 +546,7 @@ horde.setInterval = function(e, t, i) {
         var t = new horde.SpawnWave;
         t.addSpawnPoint(0, 15e3), t.addSpawnPoint(1, 1e3), t.addSpawnPoint(2, 15e3), t.addObjects(0, "wizard", 1), t.addObjects(0, "cyclops", 1), t.addObjects(1, "beholder", 1), t.addObjects(2, "wizard", 1), t.addObjects(2, "cyclops", 1), e.waves.push(t);
         var t = new horde.SpawnWave;
-        t.addSpawnPoint(1, 1e3), t.addObjects(1, "doppelganger", 1), t.bossWave = !0, t.bossName = "Doppelganger", e.waves.push(t)
+        t.addSpawnPoint(1, 1e3), t.addObjects(1, "doppelganger", 1), t.bossWave = !0, t.bossName = "Doppelganger", e.waves.push(t);
     },
     function() {
         var e = "1.4.0",
@@ -3188,10 +3188,10 @@ horde.setInterval = function(e, t, i) {
                 ttl: 9e4,
                 damageType: "magic",
                 onInit: function() {
-                    this.setDirection(horde.randomDirection()), this.moveChangeDelay = horde.randomRange(5e3, 1e4)
+                    this.setDirection(horde.randomDirection()), this.moveChangeDelay = horde.randomRange(5e3, 1e4);
                 },
                 onUpdate: function(e, i) {
-                    2 === this.animFrameIndex && (this.animated = !1, this.spriteX = 896), 1 === this.team && !i.objects[this.ownerId] && this.ttl - this.ttlElapsed > 2e3 && (this.ttlElapsed = this.ttl - 2e3), t.wander.apply(this, arguments)
+                    2 === this.animFrameIndex && (this.animated = !1, this.spriteX = 896), 1 === this.team && !i.objects[this.ownerId] && this.ttl - this.ttlElapsed > 2e3 && (this.ttlElapsed = this.ttl - 2e3), t.wander.apply(this, arguments);
                 },
                 onObjectCollide: function(e) {
                     e.team !== this.team && "projectile" !== e.role && e.addState(horde.Object.states.SLOWED, 300), 3 !== this.team && "magic" == e.damageType && (horde.sound.play("fire_attack"), this.ownerId = null, this.team = 3, this.damage = 5, this.ttl = 2e3, this.ttlElapsed = 0, this.spriteY += 224, this.animDelay = 500, this.animFrameIndex = 0, this.animNumFrames = 3)
