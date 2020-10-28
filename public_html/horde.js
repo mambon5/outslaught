@@ -1,57 +1,57 @@
 var horde = {};
 horde.canvasFallbackContent = '<div class="fallback"><p>Your browser does not appear to support <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>.</p><p>Please try one of the following, more standards compliant browsers: <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.apple.com/safari/">Safari</a>, <a href="http://www.mozilla.com/firefox/">Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</p></div>';
 var bind = function(e, t) {
-    return "string" == typeof t && (t = e[t]),
+    return "string" === typeof t && (t = e[t]),
         function() {
-            t.apply(e, arguments)
-        }
+            t.apply(e, arguments);
+        };
 };
 
-if ("undefined" == typeof requestAnimationFrame) {
+if ("undefined" === typeof requestAnimationFrame) {
     var requestAnimationFrame = window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || window.webkitRequestAnimationFrame || function(e) {
         setTimeout(function() {
-            e(Date.now())
-        }, 17)
+            e(Date.now());
+        }, 17);
     };
 }
 horde.setInterval = function(e, t, i) {
         var s = function() {
-            t.call(i)
+            t.call(i);
         };
-        return window.setInterval(s, e)
+        return window.setInterval(s, e);
     },
     horde.setTimeout = function(e, t, i) {
         var s = function() {
-            t.call(i)
+            t.call(i);
         };
-        return window.setTimeout(s, e)
+        return window.setTimeout(s, e);
     },
     horde.on = function(e, t, i, s) {
         i.addEventListener(e, function(e) {
-            t.call(s, e)
-        }, !1)
+            t.call(s, e);
+        }, !1);
     },
     horde.stopEvent = function(e) {
         e.cancelBubble = !0,
             e.stopPropagation(),
-            e.preventDefault()
+            e.preventDefault();
     }, horde.now = function() {
-        return Date.now()
+        return Date.now();
     }, horde.makeCanvas = function(e, t, i, s) {
         var a = document.createElement("canvas");
         if (a.id = e, a.width = Number(t) || 0, a.height = Number(i) || 0, s !== !0) {
             a.innerHTML = horde.canvasFallbackContent;
             var o = document.getElementById("stage");
-            o.appendChild(a)
+            o.appendChild(a);
         }
-        return a
+        return a;
     }, horde.getOffset = function(e) {
         for (var t = {
                 x: e.offsetLeft,
                 y: e.offsetTop
             };;) {
             if (e = e.parentNode, e === document.body) break;
-            t.x += e.offsetLeft, t.y += e.offsetTop
+            t.x += e.offsetLeft, t.y += e.offsetTop;
         }
         return scrollTop = horde.getScrollTop(), t.x -= scrollTop.x, t.y -= scrollTop.y, t
     }, horde.getScrollTop = function() {
@@ -64,19 +64,19 @@ horde.setInterval = function(e, t, i) {
         return t = t.clientHeight ? t : e, {
             x: t.scrollLeft,
             y: t.scrollTop
-        }
+        };
     }, horde.randomRange = function(e, t) {
-        return Math.round(Math.random() * (t - e)) + e
+        return Math.round(Math.random() * (t - e)) + e;
     }, horde.clamp = function(e, t, i) {
-        return Math.min(Math.max(e, t), i)
+        return Math.min(Math.max(e, t), i);
     }, horde.randomDirection = function() {
         var e = new horde.Vector2(horde.randomRange(-10, 10), horde.randomRange(-10, 10));
-        return e.normalize(), e
+        return e.normalize(), e;
     }, horde.makeObject = function(e, t) {
         var i = new horde.Object;
         i.type = e;
         for (var s in horde.objectTypes[e]) i[s] = horde.objectTypes[e][s];
-        return t !== !0 && i.init(), i
+        return t !== !0 && i.init(), i;
     }, horde.directions = {
         UP: 0,
         UP_RIGHT: 1,
@@ -103,42 +103,42 @@ horde.setInterval = function(e, t, i) {
                 case horde.directions.LEFT:
                     return new horde.Vector2(-1, 0);
                 case horde.directions.UP_LEFT:
-                    return new horde.Vector2(-1, -1)
+                    return new horde.Vector2(-1, -1);
             }
         },
         fromVector: function(e) {
-            return e.x > -.25 && e.x < .25 && e.y < 0 ? horde.directions.UP : e.x > -.25 && e.x < .25 && e.y > 0 ? horde.directions.DOWN : e.x > 0 && e.y > -.25 && e.y < .25 ? horde.directions.RIGHT : e.x < 0 && e.y > -.25 && e.y < .25 ? horde.directions.LEFT : e.x > 0 && e.y < 0 ? horde.directions.UP_RIGHT : e.x > 0 && e.y > 0 ? horde.directions.DOWN_RIGHT : e.x < 0 && e.y > 0 ? horde.directions.DOWN_LEFT : e.x < 0 && e.y < 0 ? horde.directions.UP_LEFT : void 0
+            return e.x > -.25 && e.x < .25 && e.y < 0 ? horde.directions.UP : e.x > -.25 && e.x < .25 && e.y > 0 ? horde.directions.DOWN : e.x > 0 && e.y > -.25 && e.y < .25 ? horde.directions.RIGHT : e.x < 0 && e.y > -.25 && e.y < .25 ? horde.directions.LEFT : e.x > 0 && e.y < 0 ? horde.directions.UP_RIGHT : e.x > 0 && e.y > 0 ? horde.directions.DOWN_RIGHT : e.x < 0 && e.y > 0 ? horde.directions.DOWN_LEFT : e.x < 0 && e.y < 0 ? horde.directions.UP_LEFT : void 0;
         }
     }, horde.x = function(e, t) {
         for (var i = 0, s = "", a = 0; a < t.length; ++a) i += t.charCodeAt(a);
         for (var o = 0; o < e.length; ++o) s += String.fromCharCode(i ^ e.charCodeAt(o));
-        return s
+        return s;
     },
     function() {
         var e = [];
         horde.log = function(t) {
-            e.push(t), console.log(t)
-        }
+            e.push(t), console.log(t);
+        };
     }(),
     function() {
         horde.Timer = function() {
-            this.elapsed_ms = 0, this.ttl = 0
+            this.elapsed_ms = 0, this.ttl = 0;
         };
         var e = horde.Timer,
             t = e.prototype;
         e.now = function() {
-            return Date.now()
+            return Date.now();
         }, t.start = function(e) {
-            e && (this.ttl = Number(e)), this.elapsed_ms = 0
+            e && (this.ttl = Number(e)), this.elapsed_ms = 0;
         }, t.update = function(e) {
-            this.elapsed_ms += e
+            this.elapsed_ms += e;
         }, t.reset = function() {
-            this.start()
+            this.start();
         }, t.elapsed = function() {
-            return this.elapsed_ms
+            return this.elapsed_ms;
         }, t.expired = function() {
-            return this.ttl > 0 ? this.elapsed_ms > this.ttl : !1
-        }
+            return this.ttl > 0 ? this.elapsed_ms > this.ttl : !1;
+        };
     }(),
     function() {
         horde.sound = {};
@@ -148,7 +148,7 @@ horde.setInterval = function(e, t, i) {
             s = {},
             a = !1;
         horde.sound.init = function(t) {
-            if ("undefined" == typeof Audio) return void(a = !0);
+            if ("undefined" === typeof Audio) return void(a = !0);
             switch (a = !1, e) {
                 case "ios":
                     t();
@@ -156,13 +156,13 @@ horde.setInterval = function(e, t, i) {
                 case "sm2":
                     soundManager.useFastPolling = !0, soundManager.useHighPerformance = !0, soundManager.autoLoad = !0, soundManager.multiShot = !0, soundManager.volume = 100, soundManager.onload = t, soundManager.useHTML5Audio = !1, soundManager.onerror = function(i) {
                         return function() {
-                            e = "html5", i(t)
-                        }
+                            e = "html5", i(t);
+                        };
                     }(arguments.callee);
                     break;
                 case "html5":
                     var i = document.createElement("audio");
-                    i.canPlayType && (i.canPlayType("audio/mpeg;") || (e = null)), t()
+                    i.canPlayType && (i.canPlayType("audio/mpeg;") || (e = null)), t();
             }
         }, horde.sound.create = function(i, o, n, r) {
             if (!a) switch (n = Boolean(n), o += t, void 0 === r && (r = 100), e) {
@@ -173,7 +173,7 @@ horde.setInterval = function(e, t, i) {
                         volume: r
                     };
                     n && (h.onfinish = function() {
-                        this.play()
+                        this.play();
                     });
                     var d = soundManager.createSound(h);
                     d.load();
@@ -181,10 +181,10 @@ horde.setInterval = function(e, t, i) {
                 case "html5":
                     var p = new Audio;
                     p.preload = "auto", p.src = o, n ? p.addEventListener("ended", function() {
-                        this.currentTime = 0, this.play()
+                        this.currentTime = 0, this.play();
                     }, !1) : p.addEventListener("ended", function() {
-                        this.pause(), this.currentTime = 0
-                    }, !1), p.load(), p.volume = r / 100, s[i] = p
+                        this.pause(), this.currentTime = 0;
+                    }, !1), p.load(), p.volume = r / 100, s[i] = p;
             }
         }, horde.sound.isPlaying = function(t) {
             if (!a) switch (e) {
@@ -192,7 +192,7 @@ horde.setInterval = function(e, t, i) {
                     var i = soundManager.getSoundById(t);
                     return i ? 1 === i.playState : !1;
                 case "html5":
-                    return s[t].currentTime > 0
+                    return s[t].currentTime > 0;
             }
         }, horde.sound.play = function(t) {
             if (!a) {
@@ -206,7 +206,7 @@ horde.setInterval = function(e, t, i) {
                         break;
                     case "html5":
                         try {
-                            s[t].pause(), s[t].currentTime = 0, s[t].play()
+                            s[t].pause(), s[t].currentTime = 0, s[t].play();
                         } catch (o) {}
                 }
             }
@@ -3016,11 +3016,11 @@ horde.setInterval = function(e, t, i) {
                                 for (var r = 0; 60 > r; ++r) {
                                     var s = t.spawnObject(this, "dire_bat"),
                                         a = t.objects[s];
-                                    a.setDirection(horde.randomDirection()), a.addState(horde.Object.states.INVINCIBLE, 250)
+                                    a.setDirection(horde.randomDirection()), a.addState(horde.Object.states.INVINCIBLE, 250);
                                 }
-                                this.phaseTimer.start(8e3)
+                                this.phaseTimer.start(8e3);
                             }
-                            this.phaseTimer.expired() && this.setPhase(1)
+                            this.phaseTimer.expired() && this.setPhase(1);
                     }
                 },
                 getPattern: function() {
@@ -3030,7 +3030,7 @@ horde.setInterval = function(e, t, i) {
                         case 2:
                             return [new horde.Vector2(576, 352), new horde.Vector2(32, 352), new horde.Vector2(32, 288), new horde.Vector2(576, 288), new horde.Vector2(576, 224), new horde.Vector2(32, 224), new horde.Vector2(32, 160), new horde.Vector2(576, 160), new horde.Vector2(576, 96), new horde.Vector2(32, 96)];
                         case 3:
-                            return [new horde.Vector2(576, 64), new horde.Vector2(32, 64), new horde.Vector2(288, 192), new horde.Vector2(32, 352), new horde.Vector2(576, 352), new horde.Vector2(352, 224), new horde.Vector2(576, 64)]
+                            return [new horde.Vector2(576, 64), new horde.Vector2(32, 64), new horde.Vector2(288, 192), new horde.Vector2(32, 352), new horde.Vector2(576, 352), new horde.Vector2(352, 224), new horde.Vector2(576, 64)];
                     }
                 },
                 makeSpikeWalls: function(e) {
@@ -3042,24 +3042,24 @@ horde.setInterval = function(e, t, i) {
                     for (var a = [], o = 0; 18 > o; ++o) a.push(!0);
                     for (var n = 0; t > n; ++n) {
                         for (var r = 0, h = !1; h === !1;) r = horde.randomRange(3, a.length - 1), h = a[r] === !0;
-                        a[r] = !1
+                        a[r] = !1;
                     }
                     for (var d = 0; d < a.length; ++d)
                         if (a[d] === !0) {
                             var p = horde.makeObject("spike_wall");
                             p.position = new horde.Vector2(32 + 32 * d, 64), p.spinUpTime = i, p.speed *= s,
-                                e.addObject(p)
+                                e.addObject(p);
                         }
                     for (var a = [], o = 0; 10 > o; ++o) a.push(!0);
                     for (var n = 0; t > n; ++n) {
                         for (var r = 0, h = !1; h === !1;) r = horde.randomRange(3, a.length - 1), h = a[r] === !0;
-                        a[r] = !1
+                        a[r] = !1;
                     }
                     for (var d = 0; d < a.length; ++d)
                         if (a[d] === !0) {
                             var p = horde.makeObject("spike_wall");
                             p.position = new horde.Vector2(32, 64 + 32 * d), p.wallDirection = new horde.Vector2(1, 0), p.spinUpTime = i, p.speed = 275, p.speed *= s,
-                                e.addObject(p)
+                                e.addObject(p);
                         }
                 }
             },
@@ -3078,10 +3078,10 @@ horde.setInterval = function(e, t, i) {
                 ttl: 1e4,
                 soundAttacks: "dopp_attacks",
                 onInit: function() {
-                    this.spawnTimer = new horde.Timer, this.spawnTimer.start(50)
+                    this.spawnTimer = new horde.Timer, this.spawnTimer.start(50);
                 },
                 onUpdate: function(e, t) {
-                    t.objectExists(this.ownerId) || this.die(), this.spawnTimer.update(e), this.spawnTimer.expired() && (t.spawnObject(this, "e_dopp_fire"), this.spawnTimer.reset())
+                    t.objectExists(this.ownerId) || this.die(), this.spawnTimer.update(e), this.spawnTimer.expired() && (t.spawnObject(this, "e_dopp_fire"), this.spawnTimer.reset());
                 }
             }, e.e_dopp_sword = {
                 role: "projectile",
@@ -3098,10 +3098,10 @@ horde.setInterval = function(e, t, i) {
                 piercing: !0,
                 soundAttacks: "dopp_attacks",
                 onInit: function() {
-                    this.spawnTimer = new horde.Timer, this.spawnTimer.start(50)
+                    this.spawnTimer = new horde.Timer, this.spawnTimer.start(50);
                 },
                 onUpdate: function(e, t) {
-                    this.spawnTimer.update(e), this.spawnTimer.expired() && (t.spawnObject(this, "e_dopp_fire"), this.spawnTimer.reset())
+                    this.spawnTimer.update(e), this.spawnTimer.expired() && (t.spawnObject(this, "e_dopp_fire"), this.spawnTimer.reset());
                 }
             }, e.beholder = {
                 role: "monster",
@@ -3123,14 +3123,14 @@ horde.setInterval = function(e, t, i) {
                     weight: 1
                 }],
                 onInit: function() {
-                    this.phaseTimer = new horde.Timer, this.attackTimer = new horde.Timer, this.eyeletOffset = 100, this.eyeletOffsetMod = 1, this.enraged = !1
+                    this.phaseTimer = new horde.Timer, this.attackTimer = new horde.Timer, this.eyeletOffset = 100, this.eyeletOffsetMod = 1, this.enraged = !1;
                 },
                 onUpdate: function(e, i) {
                     if (this.attackTimer.update(e), this.attackTimer.expired()) {
                         horde.sound.play("wizard_attacks");
                         var s = i.spawnObject(this, "e_energy_ball"),
                             a = i.objects[s];
-                        a.chase(i.getPlayerObject()), this.attackTimer.reset()
+                        a.chase(i.getPlayerObject()), this.attackTimer.reset();
                     }
                     switch (this.eyeletOffset += .02 * e * this.eyeletOffsetMod, this.eyeletOffset > 120 && (this.eyeletOffsetMod = -1), this.eyeletOffset < 100 && (this.eyeletOffsetMod = 1), this.wounds > this.hitPoints / 2 && !this.enraged && (this.enraged = !0, this.speed *= 1.5, this.animDelay /= 2, this.attackTimer.start(2e3)), this.phase) {
                         case 0:
@@ -3145,8 +3145,8 @@ horde.setInterval = function(e, t, i) {
                                 var s = i.spawnObject(this, "eyelet");
                                 if (this.wounds > this.hitPoints / 2) {
                                     var a = i.objects[s];
-                                    a.makeBadass()
-                                }++this.eyeletsSpawned, this.eyeletsSpawned >= 12 && this.nextPhase()
+                                    a.makeBadass();
+                                }++this.eyeletsSpawned, this.eyeletsSpawned >= 12 && this.nextPhase();
                             }
                             break;
                         case 3:
