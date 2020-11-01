@@ -6404,7 +6404,7 @@ horde.setInterval = function (e, t, i)
         horde.SpawnPoint = function (e, t, i, s)
         {
             this.delay = 500, this.lastSpawnElapsed = 0, this.location =
-                new horde.Rect(e, t, i, s), this.queue = []
+                new horde.Rect(e, t, i, s), this.queue = [];
         };
         var e = horde.SpawnPoint.prototype;
         e.update = function (e, t)
@@ -6460,5 +6460,5 @@ horde.setInterval = function (e, t, i)
     , function ()
     {
         var e = new horde.Engine;
-        e.run()
+        e.run();
     }();
