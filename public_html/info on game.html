@@ -32,3 +32,46 @@ coses sobre el hord.js:
                 t.apply(e, arguments);  //que polles es arguments??
             };
     };
+    
+    
+    b.update = function ()
+        {
+            var e = horde.now()
+                , t = e - this.lastUpdate;
+            if (this.lastUpdate = e, this.lastElapsed = t, this.imagesLoaded !==
+                !0) return void this.requestFrame();
+            switch (this.state)
+            {
+            case "intro":
+                this.updateLogo(t), this.render();
+                break;
+            case "title":
+                this.handleInput(), this.updateFauxGates(t), this.render();
+                break;
+            case "credits":
+                this.handleInput(), this.render();
+                break;
+            case "intro_cinematic":
+                this.handleInput(), this.updateIntroCinematic(t), this.updateFauxGates(
+                    t), this.render();
+                break;
+            case "running":
+                this.wonGame ? this.updateWonGame(t) : this.handleInput()
+                    , this.paused || (this.updateWaves(t), this.updateSpawnPoints(
+                            t), this.updateClouds(t), this.updateObjects(t)
+                        , this.updateFauxGates(t), this.updateWeaponPickup(
+                            t), this.updateCoinPickup(t)), this.showTutorial &&
+                    this.updateTutorial(t), this.render();
+                break;
+            case "game_over":
+                this.updateGameOver(t), this.render();
+                break;
+            case "buy_now":
+                this.handleInput(), this.render()
+            }
+            this.hideReticleTimer || (this.hideReticleTimer = new horde.Timer)
+                , this.mouse.hasMoved && (this.showReticle = !0, this.hideReticleTimer
+                    .start(5e3), this.nextTutorial(3)), this.hideReticleTimer
+                .update(t), this.hideReticleTimer.expired() && (this.showReticle = !
+                    1), this.mouse.hasMoved = !1, this.requestFrame()
+        }
