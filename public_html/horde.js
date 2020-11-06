@@ -1136,12 +1136,7 @@ horde.setInterval = function (e, t, i)
                 l, this.tutorialDirection = "down", this.hideTutorialTimer =
                 null, this.nextTutorialTimer = null, this.heroFiring = !1
                 , this.heroFiringDirection = null, this.woundsTo = 0, this.gameStartTime =
-                horde.now()
-        }, b.initMap = function ()
-        {
-            this.tileSize = new horde.Size(32, 32), this.map = [
-                [0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]
-                , [0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]
+ssss                , [0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0]
                 , [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
                 , [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
                 , [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
@@ -1155,7 +1150,7 @@ horde.setInterval = function (e, t, i)
                 , [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 , [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 , [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ]
+            
         }, b.initSpawnPoints = function ()
         {
             this.spawnPoints = [], this.spawnPoints.push(new horde.SpawnPoint(
