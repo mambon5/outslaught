@@ -3,4 +3,32 @@ coses sobre el hord.js:
     1) de la línia 1800 a la 3663 només descriu monstres, heroi, objectes, habilitats, armes i els seus atributs.
     2) de la 1627 - 1800 defineix una funcion sobre moviment, status, etc.
     3) this.map defineix quins llocs del mapa podem traspassar i quins no (wall).
-    4) un comentari
+    
+    4)
+    
+    var e = new horde.Engine;
+    e.run();
+    
+    b.run = function ()
+    {
+        this.init(), this.lastUpdate = horde.now(), this.start()
+    }
+    
+    b.start = function ()
+    {
+        this.running || (this.running = !0, this.requestFrame())
+    }
+    
+    b.requestFrame = function ()
+    {
+        this.running && requestAnimationFrame(bind(this, this.update))
+    }
+    
+    var bind = function (e, t)
+    {
+        return "string" === typeof t && (t = e[t])
+            , function ()
+            {
+                t.apply(e, arguments);  //que polles es arguments??
+            };
+    };
